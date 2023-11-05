@@ -1,2 +1,3 @@
 class Decompressor:
-    pass
+    def decompress_member(self) -> bool:
+        pass

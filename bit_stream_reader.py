@@ -1,0 +1,2 @@
+class BitStreamReader:
+    pass

@@ -1,3 +1,7 @@
+from error_handler import ErrorHandler
+from checker import Checker
+
+
 class Decompressor:
     def __init__(self, buf, buf_len, f):
         self._buf = buf
@@ -6,17 +10,26 @@ class Decompressor:
         self._buf_pos = 0
 
     def decompress_member(self) -> bool:
-        while True:
-            success, message = self.check_member_header()
+        while self._buf_pos < self._buf_len:
+            success, message = Checker.check_member_header(self)
             if not success:
-                raise AttributeError(message)
+                ErrorHandler.throw_error(
+                    AttributeError, message
+                )
 
             success, message = self.decompress_blocks()
             if not success:
-                raise AttributeError("Failed to ")
+                ErrorHandler.throw_error(
+                    AttributeError, message
+                )
 
-    def check_member_header(self):
-        pass
+            success, message = Checker.check_member_trailer(self)
+            if not success:
+                ErrorHandler.throw_error(
+                    AttributeError, message
+                )
 
-    def decompress_blocks(self):
-        pass
+        return True
+
+    def decompress_blocks(self) -> (bool, str):
+        raise NotImplementedError()

@@ -1,6 +1,9 @@
 from Structures.value_and_bits import ValueAndBitsList
 
 
+MAX_DISTANCE = 32768
+OUT_BUD_SIZE = 8192
+
 length_data = ValueAndBitsList.create_list(
     (3, 0), (4, 0), (5, 0), (6, 0),
     (7, 0), (8, 0), (9, 0), (10, 0),

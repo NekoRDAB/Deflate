@@ -1,12 +1,12 @@
 import argparse
-from os.path import isfile
+from os.path import isfile, splitext
 
 
 def main():
     parser = argparse.ArgumentParser(description="Deflate")
     parser.add_argument(
         "path", type=str,
-        help="Absolute path to a file to be compressed",
+        help="Absolute path to a file to be (de)compressed",
     )
     parser.add_argument(
         "action", type=str,
@@ -21,7 +21,13 @@ def main():
 
 
 def path_correct(path):
-    return isfile(path)
+    if isfile(path):
+        if splitext(path)[-1] != ".gzip":
+            print("A file must have a .gzip extension")
+            return False
+        return True
+    print("The path must lead to an existing .gzip file")
+    return False
 
 
 if __name__ == "__main__":

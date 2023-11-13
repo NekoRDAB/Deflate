@@ -1,5 +1,5 @@
 from bit_stream_reader import BitStreamReader
-from compressed_block_parser import CompressedBlockParser, BlockFormat
+from compressed_block_parser import CompressedBlockParser, CompressedBlockFormat
 
 
 class GzipFormat:
@@ -41,7 +41,7 @@ class GzipParser:
         return blocks
 
     @staticmethod
-    def parse_compressed_block(bit_stream: BitStreamReader) -> BlockFormat:
+    def parse_compressed_block(bit_stream: BitStreamReader) -> CompressedBlockFormat:
         raise NotImplementedError()
 
     @staticmethod

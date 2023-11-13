@@ -13,6 +13,13 @@ class TestBinaryReader(unittest.TestCase):
                     "10000100001")
         actual = binary_reader.data
         self.assertEqual(expected, actual)
+        self.assertEqual(0, binary_reader.pointer)
+
+    def test_next_bit(self):
+        binary_reader = BinaryReader(PATH)
+        expected = "01001000"
+        actual = "".join([binary_reader.next_bit() for _ in range(8)])
+        self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':

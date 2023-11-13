@@ -5,13 +5,13 @@ class BinaryReader:
     def __init__(self, path: str):
         with open(path, "rb") as file:
             self._data = bitstring.Bits(file).bin
-        self._pointer: int = 0
+        self._ptr: int = 0
 
     def next_bit(self) -> str:
-        if self._pointer >= len(self._data):
+        if self._ptr >= len(self._data):
             raise IndexError("Pointer out of range")
-        result = self._data[self._pointer]
-        self._pointer += 1
+        result = self._data[self._ptr]
+        self._ptr += 1
         return result
 
     def next_byte(self) -> str:
@@ -20,3 +20,7 @@ class BinaryReader:
     @property
     def data(self):
         return self._data
+
+    @property
+    def pointer(self):
+        return self._ptr

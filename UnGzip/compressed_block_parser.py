@@ -2,7 +2,7 @@ from bit_stream_reader import BitStreamReader
 
 
 class BlockFormat:
-    def __init(self, is_last: str, btype: str, data: str):
+    def __init__(self, is_last: str, btype: str, data: str):
         self.is_last = is_last
         self.btype = btype
         self.data = data
@@ -10,5 +10,12 @@ class BlockFormat:
 
 class CompressedBlockParser:
     @staticmethod
-    def parse_block(bit_stream: BitStreamReader):
+    def parse_block(bit_stream: BitStreamReader) -> BlockFormat:
+        is_last = bit_stream.next_bit()
+        btype = bit_stream.next_bits(2)
+        data = CompressedBlockParser.parse_data(btype, bit_stream)
+        return BlockFormat(is_last, btype, data)
+
+    @staticmethod
+    def parse_data(btype: str, bit_stream: BitStreamReader) -> str:
         raise NotImplementedError()

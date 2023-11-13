@@ -32,13 +32,13 @@ class GzipParser:
 
     @staticmethod
     def parse_compressed_blocks(bit_stream: BitStreamReader) -> list:
-        compressed_blocks = []
-        compressed_block = GzipParser.parse_compressed_block(bit_stream)
-        compressed_blocks.append(compressed_block)
-        while not compressed_block.is_last:
-            compressed_block = GzipParser.parse_compressed_block(bit_stream)
-            compressed_blocks.append(compressed_block)
-        return compressed_blocks
+        blocks = []
+        block = GzipParser.parse_compressed_block(bit_stream)
+        blocks.append(block)
+        while not block.is_last:
+            block = GzipParser.parse_compressed_block(bit_stream)
+            blocks.append(block)
+        return blocks
 
     @staticmethod
     def parse_compressed_block(bit_stream: BitStreamReader) -> BlockFormat:

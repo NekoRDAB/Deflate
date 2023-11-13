@@ -22,11 +22,11 @@ def main():
 
 def path_correct(path):
     if isfile(path):
-        if splitext(path)[-1] != ".gzip":
-            print("A file must have a .gzip extension")
+        if splitext(path)[-1] != ".gz":
+            print("A file must have a .gz extension")
             return False
         return True
-    print("The path must lead to an existing .gzip file")
+    print("The path must lead to an existing .gz file")
     return False
 
 

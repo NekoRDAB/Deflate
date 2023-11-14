@@ -21,6 +21,12 @@ class TestBitStreamReader(unittest.TestCase):
         actual = "".join([bit_stream_reader.next_bit() for _ in range(8)])
         self.assertEqual(expected, actual)
 
+    def test_next_bits(self):
+        bit_stream_reader = BitStreamReader.read_file(PATH)
+        expected = "01001000"
+        actual = bit_stream_reader.next_bits(8)
+        self.assertEqual(expected, actual)
+
     def test_next_byte(self):
         bit_stream_reader = BitStreamReader.read_file(PATH)
         expected = "0100100001100101"
